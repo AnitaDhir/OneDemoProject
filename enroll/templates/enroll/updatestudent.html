@@ -1,0 +1,28 @@
+{% extends "enroll/base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-sm-6 offset-2">
+            <h4 class="alert alert-info">Update Student Information</h4>
+            <form id="updateForm" action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-success" value="Update">
+                <a href="{% url 'addandshow' %}" class="btn btn-info">Back</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript validation
+    document.getElementById("updateForm").addEventListener("submit", function(event) {
+        var form = document.getElementById("updateForm");
+        if (!form.checkValidity()) {
+            event.preventDefault(); // Prevent form submission
+            event.stopPropagation(); // Stop event propagation
+        }
+        form.classList.add("was-validated");
+    }, false);
+</script>
+{% endblock %}
